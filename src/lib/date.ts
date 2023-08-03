@@ -1,9 +1,10 @@
 export function getCurrentDate() {
-  const date = new Date();
-  let currentDay = String(date.getDate()).padStart(2, "0");
-  let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
-  let currentYear = date.getFullYear();
+  const date = new Date().toISOString().slice(0, 10);
+  return date;
+}
 
-  // return date as YYYY-MM-DD
-  return `${currentYear}-${currentMonth}-${currentDay}`;
+export function getCurrentDateMinus(minusDays: number = 9) {
+  const date = new Date();
+  date.setDate(date.getDate() - minusDays);
+  return date.toISOString().slice(0, 10);
 }
