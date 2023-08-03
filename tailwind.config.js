@@ -5,7 +5,6 @@ export default {
     extend: {
       fontFamily: {
         strait: ["Strait"],
-        "space-mono": ["Space Mono", "bold"],
       },
     },
   },
