@@ -1,6 +1,6 @@
 <script lang="ts">
   import Image from "../elements/Image.svelte";
-  import { getCurrentDate } from "./../../lib/date";
+  import { getCurrentDate, getCurrentDateMinus } from "./../../lib/date";
   import type { Image as ImageType } from "./../../lib/types.d.ts";
 
   let selectedDate = getCurrentDate();
@@ -33,10 +33,12 @@
     <h1 class="mb-1 text-2xl font-strait underline">
       {image?.title}
     </h1>
+
     <p class="font-strait">{image?.explanation}</p>
     <br />
     <h5 class="italic">{image?.date}</h5>
     <br />
+
     <input
       id="dateInput"
       type="date"

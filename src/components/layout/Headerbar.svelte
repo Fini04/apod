@@ -4,12 +4,10 @@
 >
   <h1 class="text-6xl font-bold font-space-mono">NASA APOD API</h1>
   <div class="">
-    <button class="btn">Gallary</button>
+    <a href="/#/Gallary" class="btn">Gallary</a>
+    <a href="/#/" class="btn">Home</a>
   </div>
 </div>
 
 <style lang="css">
-  #wrapper {
-    /* background-color: brown; */
-  }
 </style>
