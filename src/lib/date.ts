@@ -3,7 +3,7 @@ export function getCurrentDate() {
   return date;
 }
 
-export function getCurrentDateMinus(minusDays: number = 9) {
+export function getCurrentDateMinus(minusDays: number) {
   const date = new Date();
   date.setDate(date.getDate() - minusDays);
   return date.toISOString().slice(0, 10);
