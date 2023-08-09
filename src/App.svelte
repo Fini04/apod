@@ -4,7 +4,6 @@
   import Gallary from "./components/pages/Gallary.svelte";
   import About from "./components/pages/About.svelte";
   import Headerbar from "./components/layout/Headerbar.svelte";
-  import Show from "./components/pages/Show.svelte";
 </script>
 
 <main class="h-screen flex flex-col">
@@ -15,7 +14,6 @@
       "/": Home,
       "/Gallary": Gallary,
       "/About": About,
-      "/Show": Show,
     }}
   />
 </main>
