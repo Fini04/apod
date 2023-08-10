@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta charset="UTF-8" name="description" content="This website allows you to look trough the NASA apod image library easily." />
+    <meta name="theme-color" content="#317EFB"/>
+    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/style.css" type="text/css">
 
@@ -10,8 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Strait&display=swap" rel="stylesheet">    
+    <link rel="manifest" href="./src/manifest.json">
 
-    <title>APOD</title>
+    <meta content="Daily astronomy Images" property="og:title">
+    <meta content="You always wanted acces to a bunch of astronomy images? This website allows you to look trough the NASA apod image library easily." property="og:description">
+    <meta content="DAI" property="og:site_name">
+    <meta content='public\favicon.svg' property='og:image'>
+
+    <title>Daily Astronomy Images</title>
   </head>
   <body>
     <div id="app"></div>

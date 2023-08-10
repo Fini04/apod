@@ -1,22 +1,17 @@
 <script lang="ts">
+  import { img } from "../../lib/stores/selectedImage";
   import Image from "../elements/Image.svelte";
-  import { getCurrentDate, getCurrentDateMinus } from "./../../lib/date";
-  import type { Image as ImageType } from "./../../lib/types.d.ts";
-
-  let selectedDate = getCurrentDate();
-
-  let image: ImageType;
+  import { getCurrentDate } from "./../../lib/date";
 
   function fetchData() {
     let request: string = `https://api.nasa.gov/planetary/apod?&api_key=${
       import.meta.env.VITE_API_KEY
-    }&date=${selectedDate}`;
+    }&date=${$img.date}`;
 
     fetch(request).then(async (response) => {
-      image = await response.json();
+      img.set(await response.json());
     });
   }
-  fetchData();
 </script>
 
 <div
@@ -25,24 +20,25 @@
 >
   <article class="basis-1/2">
     <div class="card">
-      <Image src={image?.url} hdsrc={image?.hdurl} />
+      <Image src={$img?.url} hdsrc={$img?.hdurl} />
       Doubleclick to get the full quality image.
     </div>
   </article>
   <article class="basis-1/2">
     <h1 class="mb-1 text-2xl font-strait underline">
-      {image?.title}
+      {$img?.title}
     </h1>
 
-    <p class="font-strait">{image?.explanation}</p>
+    <p class="font-strait">{$img?.explanation}</p>
     <br />
-    <h5 class="italic">{image?.date}</h5>
+    <p class="italic">{$img?.date}</p>
     <br />
 
+    <label for="dateInput">Date:</label>
     <input
       id="dateInput"
       type="date"
-      bind:value={selectedDate}
+      bind:value={$img.date}
       max={getCurrentDate()}
       min="1995-06-16"
       on:change={fetchData}
@@ -54,12 +50,6 @@
   .card {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
   }
-  /* 
-  article {
-    border: solid 0.1rem white;
-    padding: 1rem;
-  } */
 </style>

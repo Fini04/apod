@@ -1,24 +1,40 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import SmallImage from "../elements/smallImage.svelte";
-  import Image from "../elements/smallImage.svelte";
   import { getCurrentDate, getCurrentDateMinus } from "./../../lib/date";
-  import type { Image as ImageType } from "./../../lib/types.d.ts";
+  import { imgArray, imgArrayArrived } from "../../lib/stores/selectedImage";
 
-  import { get_current_component } from "svelte/internal";
-
-  let selectedDate = getCurrentDate();
-
-  let image: ImageType;
-  let url: string;
-
-  let startdate = getCurrentDateMinus();
+  let startdate = getCurrentDateMinus(9);
   let enddate = getCurrentDate();
 
   let item;
-
   function removeChildElements() {
     while (item.firstChild) {
       item.removeChild(item.firstChild);
+    }
+  }
+
+  onMount(() => {
+    renderImages();
+  });
+
+  setInterval(test, 1000);
+  function test() {
+    if ($imgArrayArrived) renderImages();
+    $imgArrayArrived = false;
+  }
+
+  export function renderImages() {
+    removeChildElements();
+    for (let index = Object.keys($imgArray).length - 1; index >= 0; index--) {
+      // if ($imgArray[0].date === "00.00.0000") return;
+      new SmallImage({
+        target: document.querySelector("#gallary"),
+        props: {
+          src: $imgArray?.[index]?.url,
+          date: $imgArray?.[index]?.date,
+        },
+      });
     }
   }
 
@@ -28,21 +44,12 @@
     }&start_date=${startdate}&end_date=${enddate}`;
 
     fetch(request).then(async (response) => {
-      image = await response.json();
-      url = image[0].url;
+      imgArray.set(await response.json());
 
-      for (let index = 0; index < Object.keys(image).length; index++) {
-        const element = new Image({
-          target: document.getElementById("gallary"),
-          props: {
-            src: image?.[index]?.url,
-            date: image?.[index]?.date,
-          },
-        });
-      }
+      removeChildElements();
+      renderImages();
     });
   }
-  fetchData();
 </script>
 
 <div id="wrapper" class="p-4 m-4 border-double border-4 border-sky-500">
@@ -68,7 +75,6 @@
     <button
       class="btn"
       on:click={() => {
-        removeChildElements();
         fetchData();
       }}>Save</button
     >
