@@ -14,17 +14,14 @@
   }
 </script>
 
-<div
-  id="wrapper"
-  class="p-4 m-4 flex justify-between items-center border-double border-4 border-sky-500"
->
-  <article class="basis-1/2">
+<div id="wrapper" class="p-4 m-4 border-double border-4 border-sky-500">
+  <article id="apodPicture" class="basis-1/2">
     <div class="card">
       <Image src={$img?.url} hdsrc={$img?.hdurl} />
       Doubleclick to get the full quality image.
     </div>
   </article>
-  <article class="basis-1/2">
+  <article id="apodData" class="basis-1/2">
     <h1 class="mb-1 text-2xl font-strait underline">
       {$img?.title}
     </h1>
@@ -51,5 +48,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #wrapper {
+    display: grid;
+    grid: "p t";
+  }
+
+  @media screen and (max-width: 992px) {
+    #wrapper {
+      display: grid;
+      grid:
+        "p"
+        "t";
+    }
+  }
+  #apodPicture {
+    grid-area: p;
+
+    width: 80%;
+    margin: auto;
+  }
+  #apodData {
+    grid-area: t;
+
+    width: 80%;
+    margin: auto;
   }
 </style>

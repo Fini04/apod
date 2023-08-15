@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Router, { location, link } from "svelte-spa-router";
+  import Router from "svelte-spa-router";
   import Home from "./components/pages/Main.svelte";
   import Gallary from "./components/pages/Gallary.svelte";
   import About from "./components/pages/About.svelte";
@@ -22,6 +22,7 @@
   img.set(fallback);
   imgArray.set([fallback]);
 
+  //TODO - Put all the API-request code in extra file
   let request: string = `https://api.nasa.gov/planetary/apod?&api_key=${
     import.meta.env.VITE_API_KEY
   }&date=${getCurrentDate()}`;
@@ -44,14 +45,35 @@
   }
 </script>
 
-<Headerbar />
-<main>
-  <Router
-    routes={{
-      "/": Home,
-      "/Gallary": Gallary,
-      "/About": About,
-    }}
-  />
-</main>
-<!-- <Footer /> -->
+<div>
+  <Headerbar />
+  <main>
+    <Router
+      routes={{
+        "/": Home,
+        "/Gallary": Gallary,
+        "/About": About,
+      }}
+    />
+  </main>
+  <!-- <Footer /> -->
+</div>
+
+<style>
+  div {
+    display: grid;
+    grid:
+      "h"
+      "m"
+      "f";
+  }
+  Headerbar {
+    grid-area: h;
+  }
+  main {
+    grid-area: m;
+  }
+  Footer {
+    grid-area: f;
+  }
+</style>
