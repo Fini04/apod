@@ -77,7 +77,7 @@
       min="1995-06-16"
     />
     <button
-      class="btn"
+      class="btn btn-outline btn-secondary"
       on:click={() => {
         fetchData();
       }}>Save</button

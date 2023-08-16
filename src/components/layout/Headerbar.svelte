@@ -5,8 +5,8 @@
 <header class="p-4 m-4 border-double border-4 border-sky-500">
   <h1 class="text-6xl font-bold font-space-mono">Daily Astronomy Images</h1>
   <nav class="">
-    <a use:link href="/Gallary" class="btn">Gallary</a>
-    <a use:link href="/" class="btn">Home</a>
+    <a use:link href="/" class="btn btn-outline btn-primary">Home</a>
+    <a use:link href="/Gallary" class="btn btn-outline btn-primary">Gallary</a>
   </nav>
 </header>
 
@@ -14,6 +14,10 @@
   header {
     display: grid;
     grid: "t n";
+  }
+
+  a {
+    margin: 0.5rem;
   }
 
   h1 {
