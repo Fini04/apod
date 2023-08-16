@@ -31,10 +31,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 18.14.2
-          cache: 'npm'
+          version: 7.29.1
       - name: Install dependencies
         run: npm install
       - name: Build
