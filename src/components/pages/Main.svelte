@@ -18,7 +18,7 @@
   <article id="apodPicture" class="basis-1/2">
     <div class="card">
       <Image src={$img?.url} hdsrc={$img?.hdurl} />
-      Doubleclick to get the full quality image.
+      <p style="opacity: 65%;">Doubleclick to get the full quality image.</p>
     </div>
   </article>
   <article id="apodData" class="basis-1/2">
