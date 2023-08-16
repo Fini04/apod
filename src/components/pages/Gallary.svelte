@@ -53,7 +53,11 @@
 </script>
 
 <div id="wrapper" class="p-4 m-4 border-double border-4 border-sky-500">
-  <div id="gallary" bind:this={item} class="flex flex-row flex-wrap" />
+  <div
+    id="gallary"
+    bind:this={item}
+    class="flex flex-row justify-center flex-wrap"
+  />
   <div>
     <label for="startDate">start</label>
     <input
