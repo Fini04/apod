@@ -14,14 +14,15 @@
     });
   }
   function share() {
-    // if (navigator.canShare) {
-    navigator.share({
-      title: $img?.title,
-      url: $img?.hdurl,
-    });
-    // } else {
-    //   console.error("Sharing not possible");
-    // }
+    if (navigator.canShare) {
+      navigator.share({
+        title: $img?.title,
+        url: $img?.hdurl,
+        text: $img?.explanation,
+      });
+    } else {
+      console.error("Sharing not possible");
+    }
   }
 </script>
 
@@ -51,9 +52,11 @@
       min="1995-06-16"
       on:change={fetchData}
     />
-    <MediaQuery query="(max-device-width: 480px)" let:matches>
+    <MediaQuery query="(max-device-width: 992px)" let:matches>
       {#if matches}
-        <button on:click={share}>Share</button>
+        <button class="btn btn-outline btn-secondary" on:click={share}
+          >Share</button
+        >
       {/if}
     </MediaQuery>
   </article>
