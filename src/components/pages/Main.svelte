@@ -2,6 +2,7 @@
   import { img } from "../../lib/stores/selectedImage";
   import Image from "../elements/Image.svelte";
   import { getCurrentDate } from "./../../lib/date";
+  import MediaQuery from "../elements/MediaQuery.svelte";
 
   function fetchData() {
     let request: string = `https://api.nasa.gov/planetary/apod?&api_key=${
@@ -11,6 +12,16 @@
     fetch(request).then(async (response) => {
       img.set(await response.json());
     });
+  }
+  function share() {
+    // if (navigator.canShare) {
+    navigator.share({
+      title: $img?.title,
+      url: $img?.hdurl,
+    });
+    // } else {
+    //   console.error("Sharing not possible");
+    // }
   }
 </script>
 
@@ -40,6 +51,11 @@
       min="1995-06-16"
       on:change={fetchData}
     />
+    <MediaQuery query="(max-device-width: 480px)" let:matches>
+      {#if matches}
+        <button on:click={share}>Share</button>
+      {/if}
+    </MediaQuery>
   </article>
 </div>
 
@@ -55,7 +71,7 @@
     grid: "p t";
   }
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-device-width: 992px) {
     #wrapper {
       display: grid;
       grid:
