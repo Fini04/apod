@@ -1,6 +1,6 @@
 {
-    "name": "Daily Astronomy Images",
-    "short_name": "DAI",
+    "name": "Daily Space Images",
+    "short_name": "DSI",
     "start_url": "/",
     "display": "standalone",
     "description": "This application allows you to look trough the NASA apod image library easily.",
